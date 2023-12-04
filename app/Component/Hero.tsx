@@ -14,12 +14,12 @@ const Hero = async (props: Props) => {
           <h1 className="mb-4  text-4xl font-bold text-black sm:text-5xl md:text-6xl tracking-tighter capitalize max-lg:text-center ">
             Top Fashion For a top price
           </h1>
-          <p className="max-w-md mt-8 font-semibold text-gray-500 tracking-tighter max-lg:text-center text-base">
+          <p className="lg:max-w-md mt-8 font-semibold text-gray-500 tracking-tighter max-lg:text-center text-base">
             we sell only the most exclusive and hight quality products for you.
             we are the best so come an shop with us
           </p>
-          <div className=" mt-8 flex flex-col items-center justify-between gap-8 md:flex-row">
-            <div className="flex h-12 w-64 divide-x overflow-hidden rounded-lg border font-semibold text-base">
+          <div className=" mt-8 flex flex-col items-center justify-center gap-8 md:flex-row">
+            <div className="flex items-center justify-center h-12 w-[80%]  lg:w-64 divide-x overflow-hidden rounded-lg border font-semibold text-base">
               <Link
                 href="/Men"
                 className="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
@@ -34,9 +34,16 @@ const Hero = async (props: Props) => {
               </Link>
               <Link
                 href="/Women"
-                className="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
+                className="flex w-1/3 items-center justify-center px-2 text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
               >
                 Women
+              </Link>
+
+              <Link
+                href="/All"
+                className="flex w-1/3 items-center justify-center  text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200"
+              >
+                All
               </Link>
             </div>
           </div>

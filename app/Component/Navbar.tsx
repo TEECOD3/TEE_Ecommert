@@ -21,7 +21,11 @@ const links = [
   },
   {
     name: "Teens",
-    href: "/Teens",
+    href: "/Teen",
+  },
+  {
+    name: "All",
+    href: "/All",
   },
 ];
 
@@ -29,7 +33,7 @@ const Navbar = (props: Props) => {
   const pathname = usePathname();
   return (
     <header className="mb-8 border-b">
-      <div className="flex justify-between items-center mx-auto max-w-2xl lg:max-w-7xl max-lg:py-6">
+      <div className="flex justify-between items-center mx-auto max-w-2xl lg:max-w-7xl max-lg:py-6 max-sm:px-4">
         <Link href="/">
           <h1 className=" text-2xl md:text-3xl font-bold tracking-tighter ">
             TEE <span className="text-primary"> ECOMMERT</span>{" "}

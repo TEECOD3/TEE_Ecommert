@@ -42,7 +42,7 @@ const ImageGallary = ({ images }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4 h-[400px] lg:h-[600px] transition-all duration-500 ease-in-out "
+        className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4 h-[400px] lg:h-[550px] transition-all duration-500 ease-in-out "
       >
         <Image
           src={urlFor(bigimage).url()}

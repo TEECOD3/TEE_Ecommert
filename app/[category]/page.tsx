@@ -1,30 +1,25 @@
 import React from "react";
 import { client } from "../Lib/sanity";
-import { simplifiedProduct } from "../interface";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-type Props = {};
+import { simplifiedProduct } from "../interface";
 
-const Newest = async (props: Props) => {
-  const data: simplifiedProduct[] = await getNewest();
+type Props = {
+  params: {
+    category: string;
+  };
+};
+
+const CategoryPage = async ({ params }: Props) => {
+  const data: simplifiedProduct[] = await GetCategorydata(params.category);
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl lg:max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto max-w-2xl lg:max-w-7xl px-4 py-4 sm:px-6  lg:px-0">
         <div className="flex justify-between items-center">
           <h2 className=" capitalize text-xl lg:text-3xl font-bold tracking-tighter text-gray-900">
-            our Newest products
+            our Newest products for {params.category}
           </h2>
-          <Link
-            href="/All"
-            className="capitalize text-primary text-base font-bold tracking-tighter  flex items-center gap-x-1"
-          >
-            see all
-            <span>
-              <ArrowRight />
-            </span>
-          </Link>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2  lg:grid-cols-4 xl:gap-x-8">
@@ -61,20 +56,16 @@ const Newest = async (props: Props) => {
   );
 };
 
-export default Newest;
+export default CategoryPage;
 
-//data fetching function using groq
-async function getNewest() {
-  const query = `*[_type == "product"] [0...4] | order(_createdAt desc){
-   _id,
-   name,
-   price,
-  "slug": slug.current,
-  "imageUrl":images[1].asset -> url,
-  "categoryName": category -> category,
+async function GetCategorydata(slug: string) {
+  const query = `*[_type == "product"  && category-> category == "${slug}"]{
+  _id,
+    name,
+  "slug":slug.current,
+    "categoryName": category-> category,
+  price,"imageUrl":images[1].asset -> url,
 }`;
-
-  const data = await client.fetch(query);
-
-  return data;
+  const categorydata = client.fetch(query);
+  return categorydata;
 }
