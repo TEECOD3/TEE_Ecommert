@@ -15,4 +15,5 @@ export interface fullProduct {
   categoryName: string;
   name: string;
   description: string;
+  sizes: string[];
 }

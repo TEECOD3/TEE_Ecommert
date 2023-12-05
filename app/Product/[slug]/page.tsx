@@ -2,6 +2,7 @@ import ImageGallary from "@/app/Component/ImageGallary";
 import { client } from "@/app/Lib/sanity";
 import { fullProduct } from "@/app/interface";
 import { Button } from "@/components/ui/button";
+import { getsizeName } from "@/lib/utils";
 import { Star, Truck } from "lucide-react";
 import React from "react";
 
@@ -19,15 +20,8 @@ const Productdetail = async ({ params }: Props) => {
       <div className="mx-auto max-w-screen-xl px-4 md:px-0">
         <div className="grid gap-8 md:grid-cols-2">
           <ImageGallary images={data.images} />
-
-          <div className="md:py-8">
-            <div className="mb-2 md:mb-3">
-              <span className="mb-0.5 inline-block  text-gray-500 ">
-                {data.categoryName}
-              </span>
-              <h2 className="text-2xl font-bold text-gray-800">{data.name}</h2>
-            </div>
-            <div className="mb-6 flex items-center gap-4 md:mb-10">
+          <div className="">
+            <div className="mt-4 mb-6 flex items-center gap-4 md:mb-4">
               <Button className="rounded-full gap-x-2">
                 <span className="text-sm">4.2</span>
                 <Star className="h-5 w-5" />
@@ -36,33 +30,43 @@ const Productdetail = async ({ params }: Props) => {
                 56 ratings
               </span>
             </div>
-            <div className="mb-4">
-              <div className="flex items-end gap-2 ">
+            <div className="mb-2 md:mb-3">
+              <h2 className="text-2xl font-bold text-gray-800">{data.name}</h2>
+            </div>
+            <div className="">
+              <div className="flex items-center gap-2 ">
                 <span className="font-bold text-xl text-gray-900 md:text-2xl">
                   &#8358;{data.price}
                 </span>
-                <span className="mb-0.5 text-red-500 line-through font-bold">
+                <span className=" text-red-500 line-through font-bold">
                   &#8358; {data.price + 2000}
                 </span>
               </div>
+            </div>
+            <p className="mt-4 text-base  tracking-wide">{data.description}</p>
 
+            <div className="my-4">
+              <p className="">
+                Size: <strong>{getsizeName(data.sizes[0])} </strong>
+              </p>
+              {data.sizes.map((sizes, sizesidx) => (
+                <Button key={sizesidx} variant="outline" className="mt-4 mr-2">
+                  {getsizeName(sizes)}
+                </Button>
+              ))}
+            </div>
+
+            <div className="flex gap-2.5 w-full">
+              <Button className="w-full lg:w-[70%]">Add to cart</Button>
+            </div>
+
+            <div className="mb-2 flex items-center gap-2  text-gray-500 mt-4">
+              <Truck />
+              <span className="text-sm">2-4 day shipping</span>{" "}
               <span className="text-sm text-gray-500">
                 incl.Vat plus shiping
               </span>
             </div>
-
-            <div className="mb-6 flex items-center gap-2  text-gray-500">
-              <Truck />
-              <span className="text-sm">2-4 day shipping</span>
-            </div>
-            <div className="flex gap-2.5 ">
-              <Button>Add to cart</Button>
-              <Button variant={"secondary"}>Checkout Now</Button>
-            </div>
-
-            <p className="mt-12 text-base text-gray-500 tracking-wide">
-              {data.description}
-            </p>
           </div>
         </div>
       </div>
@@ -78,6 +82,7 @@ _id,
   name,
   images,
   description,
+  sizes,
   "categoryName": category -> category,
   price,
   "slug":slug.current
