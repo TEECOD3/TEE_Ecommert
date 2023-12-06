@@ -9,7 +9,7 @@ type Props = {
 
 const ProductGrid = ({ products }: Props) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 lg:col-span-3 gap-x-6 lg:gap-x-8 gap-y-10">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:col-span-3 gap-x-6 lg:gap-x-8 gap-y-10">
       {products.map((product: any) => (
         <div key={product._id} className="group relative">
           <div className="aspect-square rounded-lg max-sm:pointer-events-none w-full cursor-pointer transition transform duration-300 ease-in-out  overflow-hidden rounded-mg bg-gray-200 group-hover:rotate-[1deg] lg:h-80 ">

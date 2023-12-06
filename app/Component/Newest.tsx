@@ -27,7 +27,7 @@ const Newest = async (props: Props) => {
           </Link>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2  lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2  lg:grid-cols-4 xl:gap-x-8">
           {data.map((product) => (
             <div key={product._id} className="group relative">
               <div className="aspect-square rounded-lg max-sm:pointer-events-none w-full cursor-pointer transition transform duration-300 ease-in-out  overflow-hidden rounded-mg bg-gray-200 group-hover:rotate-[1deg] lg:h-80 ">
@@ -42,16 +42,13 @@ const Newest = async (props: Props) => {
 
               <div className="mt-4 flex justify-between ">
                 <div className=" text-gray-700 font-semibold">
-                  <h3 className="text-base lg:text-sm">
+                  <h3 className="text-xs lg:text-sm">
                     <Link href={`/Product/${product.slug}`}>
                       {product.name}
                     </Link>
                   </h3>
-                  <p className="mt-1 lg:text-sm text-gray-500">
-                    {product.categoryName}
-                  </p>
+                  <p className="text-sm">&#8358;{product.price}</p>
                 </div>
-                <p className="text-sm">&#8358;{product.price}</p>
               </div>
             </div>
           ))}

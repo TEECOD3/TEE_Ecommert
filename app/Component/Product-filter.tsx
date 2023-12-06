@@ -59,7 +59,7 @@ const ProductFilter = (props: Props) => {
                   <div key={choiceidx} className="flex items-center gap-x-4">
                     <Checkbox />
                     <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      Label
+                      {choice.label}
                     </label>
                   </div>
                 ))}
