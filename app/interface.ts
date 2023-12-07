@@ -17,3 +17,4 @@ export interface fullProduct {
   description: string;
   sizes: string[];
 }
+

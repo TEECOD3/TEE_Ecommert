@@ -2,7 +2,10 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getsizeName } from "@/lib/utils";
-import { Star, Truck } from "lucide-react";
+import { ArrowRight, Star, Truck } from "lucide-react";
+import { useShoppingCart } from "use-shopping-cart";
+import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 import { fullProduct } from "../interface";
 
 type Props = {
@@ -11,6 +14,35 @@ type Props = {
 
 const ProductDetailsDesc = ({ data }: Props) => {
   const [SelectedSize, setSelectedSize] = useState(data.sizes[0]);
+  const { addItem, cartDetails, incrementItem } = useShoppingCart();
+  const cartItems = Object.entries(cartDetails!).map(([_, product]) => product);
+  console.log(cartItems);
+
+  const isInCart = !!cartDetails?.[data._id];
+  const { toast } = useToast();
+  function Addtocart() {
+    const item = {
+      ...data,
+      productdata: {
+        size: SelectedSize,
+      },
+      sku: data.slug,
+      currency: "USD",
+    };
+    isInCart ? incrementItem(item._id) : addItem(item);
+    toast({
+      title: `${isInCart ? "Added" : "Purchased"} ${data?.name}`,
+      description: `You have added this product into your cart!`,
+      action: (
+        <Link href="/Cart">
+          <Button variant="link" className="gap-x-2 whitespace-nowrap">
+            <span>open cart </span>
+            <ArrowRight className="h-5 w-5" />
+          </Button>
+        </Link>
+      ),
+    });
+  }
   return (
     <div className="">
       <div className="mt-4 mb-6 flex items-center gap-4 md:mb-4">
@@ -28,10 +60,10 @@ const ProductDetailsDesc = ({ data }: Props) => {
       <div className="">
         <div className="flex items-center gap-2 ">
           <span className="font-bold text-xl text-gray-900 md:text-2xl">
-            &#8358;{data.price}
+            ${data.price}
           </span>
           <span className=" text-red-500 line-through font-bold">
-            &#8358; {data.price + 2000}
+            ${data.price + 2000}
           </span>
         </div>
       </div>
@@ -44,7 +76,7 @@ const ProductDetailsDesc = ({ data }: Props) => {
         {data.sizes.map((sizes, sizesidx) => (
           <Button
             key={sizesidx}
-            variant="outline"
+            variant={SelectedSize == sizes ? "default" : "outline"}
             className="mt-4 mr-2"
             onClick={() => {
               setSelectedSize(sizes);
@@ -56,7 +88,9 @@ const ProductDetailsDesc = ({ data }: Props) => {
       </div>
 
       <div className="flex gap-2.5 w-full">
-        <Button className="w-full lg:w-[70%]">Add to cart</Button>
+        <Button className="w-full lg:w-[70%]" onClick={Addtocart}>
+          Add to cart
+        </Button>
       </div>
 
       <div className="mb-2 flex items-center gap-2  text-gray-500 mt-4">

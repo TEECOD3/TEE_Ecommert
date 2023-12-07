@@ -2,6 +2,7 @@ import ImageGallary from "@/app/Component/ImageGallary";
 import ProductDetailsDesc from "@/app/Component/ProductDetailsDesc";
 import { client } from "@/app/Lib/sanity";
 import { fullProduct } from "@/app/interface";
+import { Currency } from "lucide-react";
 
 import React, { useState } from "react";
 
@@ -19,7 +20,7 @@ const Productdetail = async ({ params }: Props) => {
       <div className="mx-auto max-w-screen-xl px-4 md:px-0">
         <div className="grid gap-8 md:grid-cols-2">
           <ImageGallary images={data.images} />
-          <ProductDetailsDesc data={data} />
+          <ProductDetailsDesc data={{ ...data }} />
         </div>
       </div>
     </div>

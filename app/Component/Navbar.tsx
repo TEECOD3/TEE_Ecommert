@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShoppingBagIcon } from "lucide-react";
+import { useShoppingCart } from "use-shopping-cart";
 
 type Props = {};
 const links = [
@@ -31,6 +32,7 @@ const links = [
 
 const Navbar = (props: Props) => {
   const pathname = usePathname();
+  const { cartCount } = useShoppingCart();
   return (
     <header className="mb-8 border-b">
       <div className="flex justify-between items-center mx-auto max-w-2xl lg:max-w-7xl max-lg:py-6 max-sm:px-4">
@@ -62,17 +64,13 @@ const Navbar = (props: Props) => {
           ))}
         </nav>
 
-        <div className="flex divide-x border-r sm:border-l">
-          <Button
-            size="icon"
-            variant="outline"
-            className="flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-none "
-          >
-            <ShoppingBagIcon />
-            <span className="hidden sm:block text-gray-500 font-semibold text-xs ">
-              cart
-            </span>
-          </Button>
+        <div className="flex">
+          <div className="flex gap-y-1.5 h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-none ">
+            <Link href="/Cart" className=" flex items-center">
+              <ShoppingBagIcon className="mr-0.5" />
+              <span className="text-sm text-gray-600">{cartCount}</span>
+            </Link>
+          </div>
         </div>
       </div>
     </header>
