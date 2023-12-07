@@ -4,6 +4,8 @@ import { simplifiedProduct } from "../interface";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { formatCurrencyString } from "use-shopping-cart";
+import FormattedPrice from "./FormattedPrice";
 type Props = {};
 
 const Newest = async (props: Props) => {
@@ -47,7 +49,7 @@ const Newest = async (props: Props) => {
                       {product.name}
                     </Link>
                   </h3>
-                  <p className="text-sm">&#8358;{product.price}</p>
+                  <FormattedPrice totalamount={product.price} />
                 </div>
               </div>
             </div>

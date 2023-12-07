@@ -11,7 +11,7 @@ import { getsizeName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-// import { CartItemsEmpty } from "@/components/cart-items-empty";
+import { CartItemsEmpty } from "./Cart-items-empty";
 
 type cartitems = {
   cart: any;
@@ -28,6 +28,8 @@ export function CartItems({ cart }: cartitems) {
       variant: "destructive",
     });
   }
+
+  if (cart.length === 0) return <CartItemsEmpty />;
 
   return (
     <ul
@@ -59,7 +61,14 @@ export function CartItems({ cart }: cartitems) {
                     </Link>
                   </h3>
                 </div>
-                <p className="mt-1 text-sm font-medium">${product.price}</p>
+                <p className="mt-1 text-sm font-medium">
+                  {" "}
+                  {formatCurrencyString({
+                    value: product.price!,
+                    currency: "USD",
+                    language: "en-US",
+                  })}
+                </p>
                 <p className="mt-1 text-sm font-medium">
                   Size: {/* @ts-ignore */}
                   <strong>{getsizeName(product?.productdata.size)}</strong>

@@ -11,11 +11,9 @@ const Cart = (props: Props) => {
   const { cartDetails } = useShoppingCart();
   const cartItems = Object.entries(cartDetails!).map(([_, product]) => product);
 
-  if (cartItems.length === 0) return <CartItemsEmpty />;
-
   return (
     <>
-      <main className="max-w-2xl mx-auto lg:max-w-7xl py-4 lg:py-8">
+      <main className="max-w-2xl mx-auto lg:max-w-7xl py-4 lg:py-8 px-4 lg:px-0">
         <h1 className="text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900 capitalize">
           shopping cart
         </h1>

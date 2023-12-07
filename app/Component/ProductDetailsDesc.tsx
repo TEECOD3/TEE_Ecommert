@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getsizeName } from "@/lib/utils";
 import { ArrowRight, Star, Truck } from "lucide-react";
-import { useShoppingCart } from "use-shopping-cart";
+import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { fullProduct } from "../interface";
@@ -60,10 +60,18 @@ const ProductDetailsDesc = ({ data }: Props) => {
       <div className="">
         <div className="flex items-center gap-2 ">
           <span className="font-bold text-xl text-gray-900 md:text-2xl">
-            ${data.price}
+            {formatCurrencyString({
+              value: data.price!,
+              currency: "USD",
+              language: "en-US",
+            })}
           </span>
           <span className=" text-red-500 line-through font-bold">
-            ${data.price + 2000}
+            {formatCurrencyString({
+              value: data.price! + 2000,
+              currency: "USD",
+              language: "en-US",
+            })}
           </span>
         </div>
       </div>
