@@ -9,9 +9,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       currency="USD"
       shouldPersist={true}
       cartMode="client-only"
-      successUrl="http://localhost:3000/sucess"
-      cancelUrl="http://localhost:3000/error"
-      billingAddressCollection={true}
+      successUrl="https://tee-ecommert.vercel.app/Stripe/sucess"
+      cancelUrl="https://tee-ecommert.vercel.app/Stripe/error"
+      billingAddressCollection={false}
       stripe={process.env.NEXT_PUBLIC_STRIPE_KEY!}
       language="en-US"
     >

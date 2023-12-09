@@ -8,6 +8,8 @@ import { formatCurrencyString } from "use-shopping-cart";
 import FormattedPrice from "./FormattedPrice";
 type Props = {};
 
+export const dynamic = "force dynamic";
+
 const Newest = async (props: Props) => {
   const data: simplifiedProduct[] = await getNewest();
 

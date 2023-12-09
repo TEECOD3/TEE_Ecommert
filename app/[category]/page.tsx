@@ -12,6 +12,8 @@ type Props = {
   };
 };
 
+export const dynamic = "force dynamic";
+
 const CategoryPage = async ({ params }: Props) => {
   const data: simplifiedProduct[] = await GetCategorydata(params.category);
 

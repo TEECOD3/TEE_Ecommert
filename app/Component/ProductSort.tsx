@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import {
@@ -18,19 +19,21 @@ import {
 } from "@/components/ui/sheet";
 import { Filter } from "lucide-react";
 import ProductFilter from "./Product-filter";
-
+import { useRouter } from "next/navigation";
 type Props = {};
 
 const Sortingoptions = [
-  { name: "Newest", value: "/?date=desc" },
-  { name: "Price low to high", value: "/?price=asc" },
-  { name: "Price high to low", value: "/?price=desc" },
+  { name: "Newest", value: "/All/?date=desc" },
+  { name: "Price low to high", value: "/All/?price=asc" },
+  { name: "Price high to low", value: "/All/?price=desc" },
 ];
 
 const ProductSort = (props: Props) => {
+  const router = useRouter();
+
   return (
     <div className="flex items-center">
-      <Select>
+      <Select onValueChange={(value) => router.replace(value)}>
         <SelectTrigger className="sm:w-[180px]">
           <SelectValue placeholder="sort by" />
         </SelectTrigger>
