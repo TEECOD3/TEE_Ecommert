@@ -12,7 +12,7 @@ type Props = {
   };
 };
 
-export const dynamic = "force dynamic";
+// export const dynamic = "force dynamic";
 
 const Productdetail = async ({ params }: Props) => {
   const data: fullProduct = await getProductDetails(params.slug);
