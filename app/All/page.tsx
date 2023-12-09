@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Allproducts = async ({ searchParams }: Props) => {
-  const { date = "desc", price } = searchParams;
+  const { date, price } = searchParams;
   const priceOrder = price ? `| order(price ${price})` : " ";
   const dateOrder = date ? `| order(_createdAt ${date})` : " ";
 
