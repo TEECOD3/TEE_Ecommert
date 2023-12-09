@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ProductSort from "../Component/ProductSort";
 import ProductFilter from "../Component/Product-filter";
 import { client } from "../Lib/sanity";
@@ -39,7 +39,6 @@ const Allproducrs = async (props: Props) => {
         <div className="hidden lg:block">
           <ProductFilter />
         </div>
-
         <ProductGrid products={allproduct} />
       </div>
     </div>
@@ -48,7 +47,7 @@ const Allproducrs = async (props: Props) => {
 
 export default Allproducrs;
 
-async function getAllProducts() {
+export async function getAllProducts() {
   const query = `*[_type == "product"]{
      _id,
    name,

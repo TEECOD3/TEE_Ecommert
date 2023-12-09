@@ -16,7 +16,6 @@ const ProductDetailsDesc = ({ data }: Props) => {
   const [SelectedSize, setSelectedSize] = useState(data.sizes[0]);
   const { addItem, cartDetails, incrementItem } = useShoppingCart();
   const cartItems = Object.entries(cartDetails!).map(([_, product]) => product);
-  console.log(cartItems);
 
   const isInCart = !!cartDetails?.[data._id];
   const { toast } = useToast();
@@ -29,6 +28,7 @@ const ProductDetailsDesc = ({ data }: Props) => {
       sku: data.slug,
       currency: "USD",
     };
+
     isInCart ? incrementItem(item._id) : addItem(item);
     toast({
       title: `${isInCart ? "Added" : "Purchased"} ${data?.name}`,

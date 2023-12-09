@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { fullProduct } from "../interface";
+import FormattedPrice from "./FormattedPrice";
 
 type Props = {
   products: any;
@@ -28,7 +29,7 @@ const ProductGrid = ({ products }: Props) => {
                 <Link href={`/Product/${product.slug}`}>{product.name}</Link>
               </h3>
 
-              <p className="text-sm">&#8358;{product.price}</p>
+              <FormattedPrice totalamount={product.price} />
             </div>
           </div>
         </div>

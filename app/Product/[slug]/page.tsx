@@ -14,6 +14,7 @@ type Props = {
 
 const Productdetail = async ({ params }: Props) => {
   const data: fullProduct = await getProductDetails(params.slug);
+  
 
   return (
     <div className="bg-white">
@@ -38,7 +39,8 @@ _id,
   sizes,
   "categoryName": category -> category,
   price,
-  "slug":slug.current
+  "slug":slug.current,
+  price_id
   }`;
 
   const data = client.fetch(query);

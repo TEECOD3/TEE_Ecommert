@@ -5,16 +5,35 @@ import { Loader2 } from "lucide-react";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 
 import { Button } from "@/components/ui/button";
+import { CartItems } from "./Cart-items";
 
 export function CartSummary() {
-  const { formattedTotalPrice, totalPrice, cartDetails, cartCount } =
-    useShoppingCart();
+  const {
+    formattedTotalPrice,
+    redirectToCheckout,
+    totalPrice,
+    cartDetails,
+    cartCount,
+  } = useShoppingCart();
   const [isLoading, setIsLoading] = useState(false);
   const Isdisabled = cartCount! === 0 || isLoading;
-
   const shippingAmount = cartCount! > 0 ? 500 : 0;
   const totalamount = shippingAmount + totalPrice!;
-  function onCheckout() {}
+
+  async function onCheckout(event: any) {
+    event?.preventDefault();
+    setIsLoading(true);
+    try {
+      const result = await redirectToCheckout();
+      if (result?.error) {
+        console.log("result");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsLoading(false);
+  }
 
   return (
     <section

@@ -3,6 +3,8 @@ import { client } from "../Lib/sanity";
 import Link from "next/link";
 import Image from "next/image";
 import { simplifiedProduct } from "../interface";
+import { formatCurrencyString } from "use-shopping-cart/core";
+import FormattedPrice from "../Component/FormattedPrice";
 
 type Props = {
   params: {
@@ -42,11 +44,11 @@ const CategoryPage = async ({ params }: Props) => {
                       {product.name}
                     </Link>
                   </h3>
-                  <p className="mt-1 lg:text-sm text-gray-500">
-                    {product.categoryName}
-                  </p>
                 </div>
-                <p className="text-sm">&#8358;{product.price}</p>
+
+                <div className="font-semibold">
+                  <FormattedPrice totalamount={product.price} />
+                </div>
               </div>
             </div>
           ))}

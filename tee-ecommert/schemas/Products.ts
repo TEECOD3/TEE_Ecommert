@@ -50,6 +50,11 @@ export default {
       ],
     },
     {
+      name: 'price_id',
+      title: 'Stripe productid',
+      type: 'string',
+    },
+    {
       name: 'sizes',
       title: 'Sizes',
       type: 'array',
