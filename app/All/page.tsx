@@ -13,7 +13,6 @@ type Props = {
   };
 };
 
-export const dynamic = "force dynamic";
 const Allproducts = async ({ searchParams }: Props) => {
   const priceOrder = searchParams.price
     ? `| order(price ${searchParams.price})`
