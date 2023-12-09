@@ -47,7 +47,7 @@ const Allproducrs = async (props: Props) => {
 
 export default Allproducrs;
 
-export async function getAllProducts() {
+async function getAllProducts() {
   const query = `*[_type == "product"]{
      _id,
    name,
