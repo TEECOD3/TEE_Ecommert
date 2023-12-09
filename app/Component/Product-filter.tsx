@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Accordion,
@@ -6,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {};
 
@@ -44,6 +46,10 @@ const fillteroptions = [
 ];
 
 const ProductFilter = (props: Props) => {
+  // const Router = useRouter();
+  // const searchparams = useSearchParams();
+  // const searchvalues = Array.from(searchparams.entries());
+
   return (
     <form className="sticky top-20">
       {fillteroptions.map((options, optionsidx) => (
@@ -57,8 +63,27 @@ const ProductFilter = (props: Props) => {
               <div className="space-y-4">
                 {options.options.map((choice, choiceidx) => (
                   <div key={choiceidx} className="flex items-center gap-x-4">
-                    <Checkbox />
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    <Checkbox
+                      id={`filter-${options.id}-${choiceidx}`}
+                      // checked={searchvalues.some(
+                      //   ([key, value]) =>
+                      //     key == options.id && value == choice.value
+                      // )}
+                      // onClick={(event) => {
+                      //   const params = new URLSearchParams(searchparams);
+                      //   const checked = (event.currentTarget.dataset.state =
+                      //     "checked");
+                      //   checked
+                      //     ? params.delete(options.id)
+                      //     : params.set(options.id, choice.value);
+
+                      //   Router.replace(`${params.toString()}`);
+                      // }}
+                    />
+                    <label
+                      htmlFor={`filter-${options.id}-${choiceidx}`}
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
                       {choice.label}
                     </label>
                   </div>

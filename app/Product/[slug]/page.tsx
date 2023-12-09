@@ -2,9 +2,7 @@ import ImageGallary from "@/app/Component/ImageGallary";
 import ProductDetailsDesc from "@/app/Component/ProductDetailsDesc";
 import { client } from "@/app/Lib/sanity";
 import { fullProduct } from "@/app/interface";
-import { Currency } from "lucide-react";
-
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
   params: {
@@ -47,3 +45,5 @@ _id,
   const data = client.fetch(query);
   return data;
 }
+
+export const revalidate = 60;
