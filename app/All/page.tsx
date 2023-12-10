@@ -10,19 +10,26 @@ type Props = {
   searchParams: {
     date?: string;
     price?: string;
+    category?: string;
+    Sizes?: string;
   };
 };
 
 const Allproducts = async ({ searchParams }: Props) => {
-  const { date, price } = searchParams;
+  const { date, price, Sizes, category } = searchParams;
   const priceOrder = price ? `| order(price ${price})` : " ";
   const dateOrder = date ? `| order(_createdAt ${date})` : " ";
-
   const order = `${priceOrder} ${dateOrder}`;
 
-  const allproduct = await getAllProducts(order);
+  const productfilter = `_type == "product"`;
+  const sizefilter = Sizes ? `&& "${Sizes}" in sizes` : " ";
+  const categoryfilter = category
+    ? `&& category-> category == "${category}"`
+    : " ";
+  const filter = `*[${productfilter} ${sizefilter} ${categoryfilter}] `;
+  const allproduct = await getAllProducts(order, filter);
 
-  if (allproduct === 0) {
+  if (allproduct === 0 || allproduct === undefined || allproduct === null) {
     return (
       <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border-2 border-dashed border-gray-300 dark:border-gray-800">
         <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
@@ -72,8 +79,8 @@ const Allproducts = async ({ searchParams }: Props) => {
 
 export default Allproducts;
 
-async function getAllProducts(order: string) {
-  const query = `*[_type == "product"] ${order} {
+async function getAllProducts(order: string, filter: string) {
+  const query = `${filter} ${order} {
      _id,
    name,
    price,

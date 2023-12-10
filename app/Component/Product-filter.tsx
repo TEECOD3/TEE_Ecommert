@@ -33,9 +33,8 @@ const fillteroptions = [
 
   {
     id: "Sizes",
-    name: "Size",
+    name: "Sizes",
     options: [
-      { value: "xs", label: "X-Small" },
       { value: "s", label: "Small" },
       { value: "m", label: "Medium" },
       { value: "l", label: "Large" },
@@ -46,9 +45,9 @@ const fillteroptions = [
 ];
 
 const ProductFilter = (props: Props) => {
-  // const Router = useRouter();
-  // const searchparams = useSearchParams();
-  // const searchvalues = Array.from(searchparams.entries());
+  const router = useRouter();
+  const searchparams = useSearchParams();
+  const searchvalues = Array.from(searchparams.entries());
 
   return (
     <form className="sticky top-20">
@@ -57,28 +56,31 @@ const ProductFilter = (props: Props) => {
           <AccordionItem value={`item-${optionsidx}`}>
             <AccordionTrigger>
               {options.name}
-              <span className=" mr-1 text-xs text-gray-600"></span>
+              <span className="  -ml-1 text-xs text-gray-400 uppercase font-extrabold">
+                {searchparams.get(options.id)
+                  ? `( ${searchparams.get(options.id)})`
+                  : ""}
+              </span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-4">
                 {options.options.map((choice, choiceidx) => (
-                  <div key={choiceidx} className="flex items-center gap-x-4">
+                  <div key={choice.value} className="flex items-center gap-x-4">
                     <Checkbox
                       id={`filter-${options.id}-${choiceidx}`}
-                      // checked={searchvalues.some(
-                      //   ([key, value]) =>
-                      //     key == options.id && value == choice.value
-                      // )}
-                      // onClick={(event) => {
-                      //   const params = new URLSearchParams(searchparams);
-                      //   const checked = (event.currentTarget.dataset.state =
-                      //     "checked");
-                      //   checked
-                      //     ? params.delete(options.id)
-                      //     : params.set(options.id, choice.value);
-
-                      //   Router.replace(`${params.toString()}`);
-                      // }}
+                      onClick={(event) => {
+                        const params = new URLSearchParams(searchparams);
+                        const checked =
+                          event.currentTarget.dataset.state === "checked";
+                        checked
+                          ? params.delete(options.id)
+                          : params.set(options.id, choice.value);
+                        router.replace(`/All/?${params.toString()}`);
+                      }}
+                      checked={searchvalues.some(
+                        ([key, value]) =>
+                          key == options.id && value == choice.value
+                      )}
                     />
                     <label
                       htmlFor={`filter-${options.id}-${choiceidx}`}
