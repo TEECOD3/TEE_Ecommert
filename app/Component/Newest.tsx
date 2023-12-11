@@ -1,11 +1,11 @@
-import React from "react";
-import { client } from "../Lib/sanity";
-import { simplifiedProduct } from "../interface";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import { formatCurrencyString } from "use-shopping-cart";
-import FormattedPrice from "./FormattedPrice";
+import React from 'react';
+import { client } from '../Lib/sanity';
+import { simplifiedProduct } from '../interface';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { formatCurrencyString } from 'use-shopping-cart';
+import FormattedPrice from './FormattedPrice';
 type Props = {};
 
 // export const dynamic = "force dynamic";
@@ -18,13 +18,13 @@ const Newest = async (props: Props) => {
       <div className="mx-auto max-w-2xl lg:max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="flex justify-between items-center">
           <h2 className=" capitalize text-xl lg:text-3xl font-bold tracking-tighter text-gray-900">
-            our Newest products
+            our Newest Products
           </h2>
           <Link
             href="/All"
             className="capitalize text-primary text-sm font-bold tracking-tighter  flex items-center gap-x-1"
           >
-            see all
+            see All
             <span>
               <ArrowRight />
             </span>
@@ -36,7 +36,7 @@ const Newest = async (props: Props) => {
             <div key={product._id} className="group relative">
               <div className="aspect-square rounded-lg max-sm:pointer-events-none w-full cursor-pointer transition transform duration-300 ease-in-out  overflow-hidden rounded-mg bg-gray-200 group-hover:rotate-[1deg] lg:h-80 ">
                 <Image
-                  src={product.imageUrl || ""}
+                  src={product.imageUrl || ''}
                   alt="product name"
                   width={300}
                   height={300}
