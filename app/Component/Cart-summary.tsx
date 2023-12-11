@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
+import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart';
 
-import { Button } from "@/components/ui/button";
-import { CartItems } from "./Cart-items";
+import { Button } from '@/components/ui/button';
+import { CartItems } from './Cart-items';
 
 export function CartSummary() {
   const {
@@ -26,7 +26,7 @@ export function CartSummary() {
     try {
       const result = await redirectToCheckout();
       if (result?.error) {
-        console.log("result");
+        console.log('result');
       }
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ export function CartSummary() {
       className="mt-16 rounded-lg border-2 border-gray-200 bg-white px-4 py-6 shadow-md dark:border-gray-900 dark:bg-black sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
     >
       <h2 id="summary-heading" className="text-lg font-medium">
-        Order summary
+        Order Summary
       </h2>
 
       <dl className="mt-6 space-y-4">
@@ -56,8 +56,8 @@ export function CartSummary() {
           <dd className="text-sm font-medium">
             {formatCurrencyString({
               value: shippingAmount,
-              currency: "USD",
-              language: "en-US",
+              currency: 'USD',
+              language: 'en-US',
             })}
           </dd>
         </div>
@@ -66,8 +66,8 @@ export function CartSummary() {
           <dd className="text-base font-medium">
             {formatCurrencyString({
               value: totalamount,
-              currency: "USD",
-              language: "en-US",
+              currency: 'USD',
+              language: 'en-US',
             })}
           </dd>
         </div>
@@ -76,7 +76,7 @@ export function CartSummary() {
       <div className="mt-6">
         <Button className="w-full" onClick={onCheckout} disabled={Isdisabled}>
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isLoading ? "Loading..." : "checkout"}
+          {isLoading ? 'Loading...' : 'checkout'}
         </Button>
       </div>
     </section>
