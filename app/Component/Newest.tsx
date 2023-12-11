@@ -46,7 +46,7 @@ const Newest = async (props: Props) => {
 
               <div className="mt-4 flex justify-between ">
                 <div className=" text-gray-700 font-semibold">
-                  <h3 className="text-xs lg:text-sm">
+                  <h3 className="text-sm">
                     <Link href={`/Product/${product.slug}`}>
                       {product.name}
                     </Link>
@@ -63,6 +63,7 @@ const Newest = async (props: Props) => {
 };
 
 export default Newest;
+export const revalidate = 60;
 
 //data fetching function using groq
 async function getNewest() {

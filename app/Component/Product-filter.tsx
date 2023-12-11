@@ -50,7 +50,7 @@ const ProductFilter = (props: Props) => {
   const searchvalues = Array.from(searchparams.entries());
 
   return (
-    <form className="sticky top-20">
+    <form className="sticky top-20 ">
       {fillteroptions.map((options, optionsidx) => (
         <Accordion type="single" collapsible key={optionsidx}>
           <AccordionItem value={`item-${optionsidx}`}>

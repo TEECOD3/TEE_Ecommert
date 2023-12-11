@@ -73,3 +73,5 @@ async function GetCategorydata(slug: string) {
   const categorydata = client.fetch(query);
   return categorydata;
 }
+
+export const revalidate = 60;
