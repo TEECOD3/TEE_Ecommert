@@ -22,7 +22,7 @@ const Newest = async (props: Props) => {
           </h2>
           <Link
             href="/All"
-            className="capitalize text-primary text-base font-bold tracking-tighter  flex items-center gap-x-1"
+            className="capitalize text-primary text-sm font-bold tracking-tighter  flex items-center gap-x-1"
           >
             see all
             <span>

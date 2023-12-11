@@ -17,7 +17,7 @@ const Productdetail = async ({ params }: Props) => {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-0">
+      <div className="mx-auto max-w-screen-xl px-4 md:px-0 py-10">
         <div className="grid gap-8 md:grid-cols-2">
           <ImageGallary images={data.images} />
           <ProductDetailsDesc data={{ ...data }} />
